@@ -1,0 +1,105 @@
+//
+// user.scss
+// Use this to write your custom SCSS
+//
+.colorLink {
+    color: #27282a !important;
+    &:hover {
+        color: #ff5a00 !important;
+        text-decoration: underline;
+    }
+}
+.bnt-contacte {
+    background-color: #ff5a00 !important;
+}
+
+.navbar-toggler {
+    background-color: #ff5a00 !important;
+}
+
+.logo {
+    border-radius: 10px;
+    overflow: hidden;
+}
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='#ffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+}
+
+.navbar-light .navbar-toggler {
+    color: white !important;
+}
+
+#navbar-Boxshadou {
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.floatingNav {
+    width: calc(100vh - 100px);
+    border-radius: 2px;
+    box-shadow: 0px 1px 10px #999 !important;
+}
+
+// style footer
+.bg-dark .footer-brand {
+    filter: none;
+}
+.footer-logo {
+    border: 1px solid gray;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 150px;
+    img {
+        margin-bottom: 0px !important;
+    }
+}
+.adresse-localisation {
+    display: flex;
+
+    margin-top: 1rem !important;
+    .img-localisation {
+        width: 25px;
+        img {
+            max-width: 100%;
+        }
+    }
+}
+.row {
+    --bs-gutter-x: 2.4rem;
+}
+.bnt-footer {
+    width: auto !important;
+}
+
+.shape:not([class*="shape-blur"]) {
+    overflow: visible;
+}
+
+// style body la page home
+
+.mt-n11 {
+    margin-top: auto !important;
+}
+//style welcom-logo
+.welcome-div {
+    width: 130px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: auto;
+    overflow: hidden;
+}
+.welcome-logo {
+    width: 100%;
+}
+
+//realisation
+.over-flow {
+    overflow: hidden !important;
+}
+.zindex {
+    z-index: 100;
+}
+.row {
+    --bs-gutter-x: 0 !important;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+			<link rel="stylesheet" href="../../assets/styles/css/nav.css">
+
+
+		{% endblock %}
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		{% endblock %}
+
+
+	</head>
+	<body>
+		{% include "base/nav.html.twig" %}
+		{% block body %}{% endblock %}
+		{% include "base/footer.html.twig" %}
+
+
+	</body>
+</html>
