@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Realisation;
+
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,9 +20,19 @@ class RealisationRepository extends ServiceEntityRepository
         parent::__construct($registry, Realisation::class);
     }
 
-    // /**
-    //  * @return Realisation[] Returns an array of Realisation objects
-    //  */
+    /**
+     * @return Realisation[] Returns an array of Realisation objects
+    */
+
+    public function lastRealisation($limit)
+    {
+        return $this->createQueryBuilder('r')
+        ->orderBy('r.id', 'DESC')
+        ->setMaxResults($limit)
+        ->getQuery()
+        ->getResult();
+    }
+
     /*
     public function findByExampleField($value)
     {
