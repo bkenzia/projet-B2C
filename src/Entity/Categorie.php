@@ -39,9 +39,15 @@ class Categorie
      */
     private $realisations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="categorie")
+     */
+    private $images;
+
     public function __construct()
     {
         $this->realisations = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -107,6 +113,36 @@ class Categorie
     {
         if ($this->realisations->removeElement($realisation)) {
             $realisation->removeCategorie($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Images[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getCategorie() === $this) {
+                $image->setCategorie(null);
+            }
         }
 
         return $this;
