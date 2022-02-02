@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\BlogPost;
 use App\Entity\Categorie;
+use App\Entity\Images;
 use App\Entity\Realisation;
 use Faker\Factory;
 use App\Entity\User;
@@ -48,6 +49,9 @@ class AppFixtures extends Fixture
             $manager->persist($blogpost);
         }
 
+        
+
+
         //Création des catégories
         for ($i=0; $i <5 ; $i++) {
             # code...
@@ -69,6 +73,19 @@ class AppFixtures extends Fixture
                 ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
                 ->setDateRealisation($faker->dateTimeBetween('-6 month', 'now'));
                 $manager->persist(($realisation));
+
+                //Creation des images 
+                for ($k=0; $k<3; $k++) {
+                    $image= new Images();
+                    $image->setNom($faker->word(3, true))
+                        ->setDescription($faker->text(350))
+                        ->setSlug($faker->slug(3))
+                        ->setCategorie($categorie)
+                        ->setRealisation($realisation)
+
+                        ->setImage($faker->imageUrl($width = 640, $height = 480));
+                    $manager->persist($image);
+                }
             }
         }
 
