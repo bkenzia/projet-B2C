@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 class RealisationController extends AbstractController
 {
     #[Route('/realisations', name: 'realisations')]
-    public function realisatios(
+    public function realisations(
         RealisationRepository $realisationRepository,
         PaginatorInterface $paginator,
         Request $request 

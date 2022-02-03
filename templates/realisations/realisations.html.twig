@@ -1,10 +1,12 @@
 {% set i = 0 %}
+<section class="pt-8 pt-md-11 mt-11">
 
-{% for realisation in realisations %}
+	{% for realisation in realisations %}
 
 
-	<section class="pt-8 pt-md-11">
-		<div class="container">
+		<div class="container p-8 border  rounded mb-9 lift lift-lg" {% if i is divisible by(2) %} data-aos="fade-right" {% else %} data-aos="fade-left" {% endif %}>
+
+
 			<div class="row align-items-center justify-content-between {% if i is divisible by(2) %}  flex-row-reverse{% endif %}">
 
 
@@ -35,7 +37,7 @@
 
 				</div>
 				<div class="col-12 col-md-6 col-xl-5">
-					<a href="#">
+					<a href="">
 
 						<div class="row gx-0">
 							<div
@@ -80,11 +82,13 @@
 			<!-- / .row -->
 		</div>
 		<!-- / .container -->
-	</section>
-	<hr>
-	{% set i = i +1 %}
 
-{% endfor %}
+
+		{% set i = i +1 %}
+
+	{% endfor %}
+</section>
+
 <div class="d-flex justify-content-center">
 	{% do realisations.setPageRange(2) %}
 	{{ knp_pagination_render(realisations, 'base/pagination.html.twig') }}
