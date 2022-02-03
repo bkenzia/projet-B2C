@@ -1,0 +1,95 @@
+{% set i = 0 %}
+<section class="pt-8 pt-md-11 mt-11">
+
+	{% for realisation in realisations %}
+
+
+		<div class="container p-8 border  rounded mb-9 lift lift-lg" {% if i is divisible by(2) %} data-aos="fade-right" {% else %} data-aos="fade-left" {% endif %}>
+
+
+			<div class="row align-items-center justify-content-between {% if i is divisible by(2) %}  flex-row-reverse{% endif %}">
+
+
+				<div
+					class="col-12 col-md-6">
+
+					<!-- Badge -->
+					<span class="badge bg-primary-desat-soft rounded-pill mb-3">
+						<span class="h6 text-uppercase">
+							<time datetime="2019-05-29">Realiser le
+								{{realisation.createdAt|date('d-m-Y') }}</time>
+
+						</span>
+					</span>
+
+					<!-- Heading -->
+					<h2>
+						{{realisation.nom}}
+
+
+					</h2>
+
+					<!-- Text -->
+					<p class="fs-lg text-muted mb-6 mb-md-0">
+						{{realisation.description|u.truncate(200,'...',false)}}
+
+					</p>
+
+				</div>
+				<div class="col-12 col-md-6 col-xl-5">
+					<a href="">
+
+						<div class="row gx-0">
+							<div
+								class="col-4">
+
+								<!-- Image -->
+								<div class="w-150 mt-9 p-1 bg-white shadow-lg">
+									<img src="{{realisation.getImages().toArray()[0].image}}" class="img-fluid" alt="...">
+
+
+								</div>
+
+							</div>
+							<div
+								class="col-4">
+
+								<!-- Image -->
+								<div class="w-150 p-1 bg-white shadow-lg">
+									<img src="{{realisation.getImages().toArray()[1].image}}" class="img-fluid" alt="...">
+
+
+								</div>
+
+							</div>
+							<div
+								class="col-4 position-relative">
+
+								<!-- Image -->
+								<div class="w-150 mt-11 float-end p-1 bg-white shadow-lg">
+									<img src="{{realisation.getImages().toArray()[2].image}}" class="img-fluid" alt="...">
+
+
+								</div>
+
+							</div>
+						</div>
+					</a>
+					<!-- / .row -->
+
+				</div>
+			</div>
+			<!-- / .row -->
+		</div>
+		<!-- / .container -->
+
+
+		{% set i = i +1 %}
+
+	{% endfor %}
+</section>
+
+<div class="d-flex justify-content-center">
+	{% do realisations.setPageRange(2) %}
+	{{ knp_pagination_render(realisations, 'base/pagination.html.twig') }}
+</div>
