@@ -57,7 +57,7 @@ class AppFixtures extends Fixture
             # code...
             $categorie=new Categorie();
             $categorie->setNom($faker->word())
-            ->setDescription($faker->word(10, true))
+            ->setDescription($faker->text())
             ->setSlug($faker->slug());
             $manager->persist(($categorie));
             for ($j=0; $j <2 ; $j++) {

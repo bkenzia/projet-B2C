@@ -47,28 +47,21 @@
 				</li>
 				<li class="nav-item dropdown" data-toggle="dropdown">
 
-					<a class="nav-link dropdown-toggle colorLink " id="navbarAccount" href="https://www.google.com/" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link dropdown-toggle colorLink " id="navbarAccount" href="#" aria-haspopup="true" aria-expanded="false">
 
 
 						Portfolio
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarAccount">
-						<li class="dropdown-item dropend" data-toggle="dropdown">
+						{% for categorie in categorieNavbar() %}
 
-							<a class="dropdown-link dropdown-toggle colorLink" href="https://www.google.com/">
+							<li class="dropdown-item dropend" data-toggle="dropdown">
 
+								<a class="dropdown-link dropdown-toggle colorLink" href="{{path('portfolio_categorie', {'slug' : categorie.slug})}}">{{categorie.nom}}</a>
 
-								Categorie1
-							</a>
+							</li>
+						{% endfor %}
 
-						</li>
-						<li class="dropdown-item dropend" data-toggle="dropdown">
-
-							<a class="dropdown-link dropdown-toggle colorLink" href="#">
-
-								Catégorie 2
-							</a>
-						</li>
 					</li>
 				</li>
 			</ul>

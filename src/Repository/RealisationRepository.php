@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Categorie;
 use App\Entity\Realisation;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -23,7 +24,6 @@ class RealisationRepository extends ServiceEntityRepository
     /**
      * @return Realisation[] Returns an array of Realisation objects
     */
-
     public function lastRealisation($limit)
     {
         return $this->createQueryBuilder('r')
@@ -32,6 +32,26 @@ class RealisationRepository extends ServiceEntityRepository
         ->getQuery()
         ->getResult();
     }
+
+    /**
+     * @return Realisation[] Returns an array of Realisation objects
+    */
+    public function findAllPortfolio(Categorie $categorie): array
+    {
+        return $this->createQueryBuilder('r')
+            ->where(':categorie MEMBER OF r.categorie')
+            ->andWhere('r.portfolio=TRUE')
+            ->setParameter('categorie', $categorie)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
+
+
+
+
 
     /*
     public function findByExampleField($value)
