@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Images;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Categorie;
+use App\Entity\Realisation;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Images|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,6 +20,21 @@ class ImagesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Images::class);
     }
+
+
+
+    // /**
+    //  * @return Images[] Returns an array of Images objects
+    // */
+    // public function findAllimageCategorie(Categorie $categorie): array
+    // {
+    //     return $this->createQueryBuilder('i')
+    //         ->where(':categorie MEMBER OF r.categorie')
+          
+    //         ->setParameter('categorie', $categorie)
+    //         ->getQuery()
+    //         ->getResult();
+    // }
 
     // /**
     //  * @return Images[] Returns an array of Images objects
