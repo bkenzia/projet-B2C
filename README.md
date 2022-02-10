@@ -41,3 +41,13 @@ symfony console doctrine:fixtures:load
 ```bash
 php bin/phpunit --testdox
 ```
+
+## Production
+
+### Envoie des mails de Contacts
+
+Les emails de prise de contact sont en BDD ,pour les envoyer à l'administrateur du site par mail, il faut mettre en place un cron sur;
+
+```bash
+symfony console app:send-contact
+```
