@@ -3,6 +3,7 @@
 namespace App\Tests;
 
 use App\Entity\BlogPost;
+use App\Entity\Commentaire;
 use App\Entity\User;
 use DateTime;
 use PHPUnit\Framework\TestCase;
@@ -56,7 +57,22 @@ class BlogPostUnitTest extends TestCase
         $this->assertEmpty($blogPost->getTitre());
         $this->assertEmpty($blogPost->getCreatedAt());  
         $this->assertEmpty($blogPost->getContenu());  
-        $this->assertEmpty($blogPost->getUser()); 
-   
+        $this->assertEmpty($blogPost->getUser());
+        $this->assertEmpty($blogPost->getId()); 
+        $this->assertEmpty($blogPost->getSlug()); 
+    }
+
+    public function testAddGetRemoveCommentaire()
+    {
+        $blogpost=new BlogPost();
+        $commentaire=new Commentaire();
+        $this->assertEmpty($blogpost->getCommentaires());
+       
+        $blogpost->addCommentaire($commentaire);
+        $this->assertContains($commentaire, $blogpost->getCommentaires());
+
+        $blogpost->removeCommentaire($commentaire);   
+        $this->assertEmpty($blogpost->getCommentaires());
+
     }
 }

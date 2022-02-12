@@ -12,6 +12,9 @@ use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class AppFixtures extends Fixture
 {
     private $encoder;
@@ -43,13 +46,22 @@ class AppFixtures extends Fixture
         for ($i=0; $i<10; $i++) {
             $blogpost= new BlogPost();
             $blogpost->setTitre($faker->word(3, true))
-                    ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
-                    ->setContenu($faker->text(350))
-                    ->setSlug($faker->slug(3))
-                    ->setUser($user);
+                ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
+                ->setContenu($faker->text(350))
+                ->setSlug($faker->slug(3))
+                ->setUser($user);
             $manager->persist($blogpost);
         }
 
+        // creation d'un blogpost pour les tests
+            $blogpost= new BlogPost();
+            $blogpost->setTitre('Blogpost test')
+                ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
+                ->setContenu($faker->text(350))
+                ->setSlug('blogpost-test')
+                ->setUser($user);
+
+            $manager->persist($blogpost);
         
 
 
@@ -89,6 +101,38 @@ class AppFixtures extends Fixture
                 }
             }
         }
+
+        //creation categorie de test
+        $categorie = new Categorie();
+        $categorie->setNom('categorie test')
+            ->setDescription($faker->text())
+            ->setSlug('categorie-test');
+        $manager->persist(($categorie));
+
+        //creation realisation test 
+        $realisation=new Realisation();
+            $realisation->setNom('realisation test')
+            ->setDescription($faker->text())
+            ->setPortfolio($faker->randomElement([true, false]))
+            ->setSlug('realisation-test')
+            ->setFile('img/plachelder.jpeg')
+            ->addCategorie($categorie)
+            ->setUser($user)
+            ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
+            ->setDateRealisation($faker->dateTimeBetween('-6 month', 'now'));
+        $manager->persist(($realisation));
+        for ($k=0; $k<3; $k++) {
+                $image= new Images();
+                $image->setNom($faker->word(3, true))
+                    ->setDescription($faker->text(350))
+                    ->setSlug($faker->slug(3))
+                    ->setCategorie($categorie)
+                    ->setRealisation($realisation)
+
+                    ->setImage($faker->imageUrl($width = 640, $height = 480));
+                $manager->persist($image);
+            }
+
 
         $manager->flush();
     }
