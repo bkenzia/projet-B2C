@@ -3,6 +3,8 @@
 namespace App\Tests;
 
 use App\Entity\Categorie;
+use App\Entity\Commentaire;
+use App\Entity\Images;
 use App\Entity\Realisation;
 use App\Entity\User;
 use DateTime;
@@ -75,7 +77,52 @@ class RealisationUnitTest extends TestCase
         $this->assertEmpty($realisation->getPortfolio()); 
         $this->assertEmpty($realisation->getFile()); 
         $this->assertEmpty($realisation->getCategorie()); 
-        $this->assertEmpty($realisation->getUser()); 
+        $this->assertEmpty($realisation->getUser());
+        $this->assertEmpty($realisation->getId()); 
+        $this->assertEmpty($realisation->getSlug());
    
+    }
+
+     public function testAddGetRemoveCommentaire()
+    {
+        $realisation=new Realisation();
+        $commentaire=new Commentaire();
+        $this->assertEmpty($realisation->getCommentaires());
+       
+        $realisation->addCommentaire($commentaire);
+        $this->assertContains($commentaire, $realisation->getCommentaires());
+
+        $realisation->removeCommentaire($commentaire);   
+        $this->assertEmpty($realisation->getCommentaires());
+
+    }
+
+
+     public function testAddGetRemoveImages()
+    {
+        $realisation=new Realisation();
+        $image=new Images();
+        $this->assertEmpty($realisation->getImages());
+       
+        $realisation->addImage($image);
+        $this->assertContains($image, $realisation->getImages());
+
+        $realisation->removeImage($image);   
+        $this->assertEmpty($realisation->getImages());
+
+    }
+
+     public function testAddGetRemoveCategorie()
+    {
+        $realisation=new Realisation();
+        $categorie=new Categorie();
+        $this->assertEmpty($realisation->getCategorie());
+       
+        $realisation->addCategorie($categorie);
+        $this->assertContains($categorie, $realisation->getCategorie());
+
+        $realisation->removeCategorie($categorie);   
+        $this->assertEmpty($realisation->getCategorie());
+
     }
 }
