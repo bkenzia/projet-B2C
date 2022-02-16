@@ -28,24 +28,24 @@
 			<!-- Navigation -->
 			<ul class="navbar-nav ms-auto">
 				<li class="nav-item dropdown" data-toggle="dropdown">
-					<a class="nav-link dropdown-toggle colorLink " id="navbarPages" href="{{path('home')}}" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link  colorLink " id="navbarPages" href="{{path('home')}}" aria-haspopup="true" aria-expanded="false">
 
 						Acceuil
 					</a>
 				</li>
 				<li class="nav-item dropdown" data-toggle="dropdown">
-					<a class="nav-link dropdown-toggle colorLink  " id="navbarLandings" href="{{path('realisations')}}" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link  colorLink  " id="navbarLandings" href="{{path('realisations')}}" aria-haspopup="true" aria-expanded="false">
 						Réalisations
 					</a>
 				</li>
 				<li class="nav-item dropdown" data-toggle="dropdown">
-					<a class="nav-link dropdown-toggle colorLink " id="navbarAccount" href="#" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link  colorLink " id="navbarAccount" href="#" aria-haspopup="true" aria-expanded="false">
 						Portfolio
 					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarAccount">
+					<ul class="dropdown-menu " aria-labelledby="navbarAccount">
 						{% for categorie in categorieNavbar() %}
 							<li class="dropdown-item dropend" data-toggle="dropdown">
-								<a class="dropdown-link dropdown-toggle colorLink" href="{{path('portfolio_categorie', {'slug' : categorie.slug})}}">{{categorie.nom}}</a>
+								<a class="dropdown-link colorLink" href="{{path('portfolio_categorie', {'slug' : categorie.slug})}}">{{categorie.nom}}</a>
 							</li>
 						{% endfor %}
 					</ul>
@@ -54,7 +54,7 @@
 
 				<li class="nav-item dropdown" data-toggle="dropdown">
 
-					<a class="nav-link dropdown-toggle colorLink" id="navbarDocumentation" href="{{path('a_propos')}}" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link  colorLink" id="navbarDocumentation" href="{{path('a_propos')}}" aria-haspopup="true" aria-expanded="false">
 
 						A propos
 					</a>
