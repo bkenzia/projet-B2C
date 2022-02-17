@@ -1,69 +1,77 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PortfolioController!{% endblock %}
+{% block title %}Hello PortfolioController!
+{% endblock %}
 
 {% block body %}
 
-    <section data-jarallax data-speed=".8" class="pt-15 pt-md-15 pb-12 pb-md-14 overlay overlay-black overlay-60 bg-gray-900 jarallax" style="margin-top: -87px; background-image: url(assets/img/covers/cover-3.jpg);">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-10 col-lg-7 text-center">
+	<section data-jarallax data-speed=".8" class="pt-15 pt-md-15 pb-12 pb-md-14 overlay overlay-black overlay-60 bg-gray-900 jarallax" style="margin-top: -87px; background-image: url(assets/img/covers/cover-3.jpg);">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div
+					class="col-12 col-md-10 col-lg-7 text-center">
 
-            <!-- Headin -->
-            <h1 class="display-2 fw-bold text-white">
-             Portfolio
-            </h1>
-          </div>
-        </div> <!-- / .row -->
-      </div> <!-- / .container -->
-    </section>
+					<!-- Headin -->
+					<h1 class="display-2 fw-bold text-white">
+						Portfolio
+					</h1>
+				</div>
+			</div>
+			<!-- / .row -->
+		</div>
+		<!-- / .container -->
+	</section>
 
-    <div class="position-relative">
-      <div class="shape shape-bottom shape-fluid-x text-light">
-        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>      </div>
-    </div>
+	<div class="position-relative">
+		<div class="shape shape-bottom shape-fluid-x text-light">
+			<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+		</div>
+	</div>
 
-    <section class="py-8 py-md-11 mt-n10 mt-md-n14">
-      <div class="container">
-        <div class="row" id="portfolio" data-isotope='{"layoutMode": "masonry"}' style="--bs-gutter-x: 2.4rem !important;">
-          {% for categorie in categories %}
-            {% set img = categorie.realisations |last %}
-          <div class="col-12 col-md-4 resources">
+	<section class="py-8 py-md-11 mt-n10 mt-md-n14">
+		<div class="container">
+			<div class="row" id="portfolio" data-isotope='{"layoutMode": "masonry"}' style="--bs-gutter-x: 2.4rem !important;">
+				{% for categorie in categories %}
+					{% set realisation = categorie.realisations |last %}
+					<div
+						class="col-12 col-md-4 resources">
 
-            <!-- Card -->
-            <a class="card shadow-light-lg mb-7" href="{{path('portfolio_categorie', {'slug':categorie.slug})}}">
+						<!-- Card -->
+						<a
+							class="card shadow-light-lg mb-7" href="{{path('portfolio_categorie', {'slug':categorie.slug})}}">
 
-              <!-- Image -->
-              <div class="card-zoom">
-                <img class="card-img" src="{{img.file}}" alt="...">
-              </div>
+							<!-- Image -->
+							<div class="card-zoom">
+								<img class="card-img" src="{{vich_uploader_asset(realisation, 'imageFile')}}" alt="...">
 
-              <!-- Overlay -->
-              <div class="card-img-overlay card-img-overlay-hover">
-                <div class="card-body bg-white">
+							</div>
 
-                  <!-- Shape -->
-                  <div class="shape shape-bottom-100 shape-fluid-x text-white">
-                    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>                  </div>
+							<!-- Overlay -->
+							<div class="card-img-overlay card-img-overlay-hover">
+								<div
+									class="card-body bg-white">
 
-                  <!-- Preheading -->
-                  <h6 class="text-uppercase mb-1 text-muted">{{ categorie.nom}}</h6>
+									<!-- Shape -->
+									<div class="shape shape-bottom-100 shape-fluid-x text-white">
+										<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+									</div>
 
-                  <!-- Heading -->
-                  <h4 class="mb-0">{{ categorie.description|u.truncate(50,'...',false)}}</h4>
+									<!-- Preheading -->
+									<h6 class="text-uppercase mb-1 text-muted">{{ categorie.nom}}</h6>
 
-                </div>
-              </div>
+									<!-- Heading -->
+									<h4 class="mb-0">{{ categorie.description|u.truncate(50,'...',false)}}</h4>
 
-            </a>
+								</div>
+							</div>
 
-          </div>
-          {% endfor %}
+						</a>
+
+					</div>
+				{% endfor %}
 
 
-
-         
-        </div>
-      </div>
-    </section>
+			</div>
+		</div>
+	</section>
 {% endblock %}

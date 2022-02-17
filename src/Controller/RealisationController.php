@@ -19,7 +19,7 @@ class RealisationController extends AbstractController
         PaginatorInterface $paginator,
         Request $request
     ): Response {
-        $data=$realisationRepository->findAll();
+        $data=$realisationRepository->findBy([], ['id'=>'DESC']);
         $realisations=$paginator->paginate(
             $data,
             $request->query->getInt('page', 1),

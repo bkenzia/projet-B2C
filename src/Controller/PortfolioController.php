@@ -26,25 +26,21 @@ class PortfolioController extends AbstractController
         $realisations=$realisationRepository->findAllPortfolio($categorie);
        
         // recuperer les images de la meme categorie
-       $images=array();
+        $images=array();
         
         foreach ($realisations as $realisation) {
             $imagesCategorie=$realisation->getImages()->toArray();
-            foreach ($imagesCategorie as $imagecatego){
-
+            foreach ($imagesCategorie as $imagecatego) {
                 if ($imagecatego->getCategorie()->getNom()==$categorie->getNom()) {
-                    array_push($images,$imagecatego ) ;
+                    array_push($images, $imagecatego) ;
                 }
             }
-            
-             
         }
      
-         return $this->render('portfolio/categorie.html.twig', [
+        return $this->render('portfolio/categorie.html.twig', [
             'categorie' => $categorie,
             'realisations' =>$realisations,
             'images'=>$images,
         ]);
     }
-
 }
