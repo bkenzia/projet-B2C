@@ -14,7 +14,7 @@ final class Version20211221134553 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'la Creation des relations( Realisation->User et Realisation->Ctegorie)';
+        return 'la Creation des relations( Realisation->User et Realisation->Categorie)';
     }
 
     public function up(Schema $schema): void

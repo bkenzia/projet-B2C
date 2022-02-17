@@ -6,9 +6,15 @@ use App\Repository\RealisationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+
+
+
 
 /**
  * @ORM\Entity(repositoryClass=RealisationRepository::class)
+ * @Vich\Uploadable
  */
 class Realisation
 {
@@ -50,6 +56,15 @@ class Realisation
     private $slug;
 
     /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * 
+     * @Vich\UploadableField(mapping="realisation_images", fileNameProperty="file")
+     * 
+     * @var File|null
+     */
+    private $imageFile;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $file;
@@ -71,7 +86,7 @@ class Realisation
     private $commentaires;
 
     /**
-     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="Realisation")
+     * @ORM\OneToMany(targetEntity=Images::class, cascade={"persist", "remove"}, mappedBy="Realisation")
      */
     private $images;
 
@@ -157,6 +172,22 @@ class Realisation
         $this->slug = $slug;
 
         return $this;
+    }
+
+    public function setImageFile(?File $file = null): void
+    {
+        $this->imageFile = $file;
+
+        if (null !== $file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 
     public function getFile(): ?string
@@ -245,7 +276,7 @@ class Realisation
         return $this->images;
     }
 
-    public function addImage(Images $image): self
+    public function addImages(Images $image): self
     {
         if (!$this->images->contains($image)) {
             $this->images[] = $image;
@@ -255,7 +286,10 @@ class Realisation
         return $this;
     }
 
-    public function removeImage(Images $image): self
+    
+
+
+    public function removeImages(Images $image): self
     {
         if ($this->images->removeElement($image)) {
             // set the owning side to null (unless already changed)
@@ -265,5 +299,10 @@ class Realisation
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
     }
 }
