@@ -4,7 +4,11 @@
 {% endblock %}
 
 {% block body %}
-	<section data-jarallax data-speed=".8" class="pt-15 pt-md-15 pb-12 pb-md-14 overlay overlay-black overlay-60 bg-gray-900 jarallax" style="margin-top: -87px; background-image: url(https://media.istockphoto.com/photos/kitchen-room-with-rustic-dining-table-set-picture-id530405017?k=20&m=530405017&s=612x612&w=0&h=941D_68Pn6eMfroUjUUdmmP0injIlW9BC9ypHajrwkU=);">
+	{% set img = categorie.realisations|last . images|last %}
+
+	<section data-jarallax data-speed=".8" class="pt-15 pt-md-15 pb-12 pb-md-14 overlay overlay-black overlay-60 bg-gray-900 jarallax" style="margin-top: -87px; background-image: url({{vich_uploader_asset(img, 'imageFile')|imagine_filter('welcome')}});">
+
+
 		<div class="container">
 			<div class="row justify-content-center">
 				<div
@@ -23,32 +27,44 @@
 		</div>
 		<!-- / .container -->
 	</section>
+	<div class="position-relative">
+		<div class="shape shape-bottom shape-fluid-x text-light">
+			<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+		</div>
+	</div>
 
 
 	<section class="py-8 py-md-11 mt-n10 mt-md-n14">
 		<div class="container">
-			<div class="row " id="portfolio" data-isotope='{"layoutMode": "masonry"}' style="--bs-gutter-x: 2.4rem !important;">
+			<div class="row" id="portfolio" data-isotope='{"layoutMode": "masonry"}' style="--bs-gutter-x: 2.4rem !important;">
+				{% set i = 0 %}
+
 
 				{% for realisation in realisations %}
-
 					<div
-						class=" col-12 col-md-12 resources">
-
-						<!-- Card -->
-						<div
-							class=" row card shadow-light-lg mb-7 " style="flex-direction: row; gap:1rem;justify-content:center; background-color: transparent;">
+						class=" col-12 col-md-4 resources">
 
 
-							<!-- Image -->
-							{% for realisationimage in realisation.images  %}
-								{% if realisationimage.categorie().nom()==categorie.nom() %}
-									<div class="col-md-3 card-zoom row" data-bigpicture='{"imgSrc" : "{{realisationimage.image}}"}'>
-										<img class="card-img" src="{{realisationimage.image}}" alt="...">
+						<!-- Image -->
+						{% for realisationimage in realisation.images  %}
+
+							{% if realisationimage.categorie.nom == categorie.nom and i == 0 %}
+								<div class="card card-flush " href="#!">
+									<div class=" card-zoom " data-bigpicture='{"imgSrc" : "{{vich_uploader_asset(realisationimage, "imageFile")|imagine_filter("full")}}"}'>
+
+
+										<img class="card-img  " src="{{vich_uploader_asset(realisationimage, 'imageFile')|imagine_filter('portfolio')}}" alt="...">
+
+
 									</div>
+								</div>
 
-								{% endif %}
-							{% endfor %}
-						</div>
+								{% set i = i +1 %}
+
+							{% endif %}
+						{% endfor %}
+						{% set i = i -1 %}
+
 
 					</div>
 				{% endfor %}

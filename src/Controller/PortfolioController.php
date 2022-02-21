@@ -24,7 +24,7 @@ class PortfolioController extends AbstractController
     public function categorie(Categorie $categorie, RealisationRepository $realisationRepository): Response
     {
         $realisations=$realisationRepository->findAllPortfolio($categorie);
-       
+    
         // recuperer les images de la meme categorie
         $images=array();
         

@@ -96,7 +96,7 @@ class AppFixtures extends Fixture
                         ->setCategorie($categorie)
                         ->setRealisation($realisation)
 
-                        ->setImage($faker->imageUrl($width = 640, $height = 480));
+                        ->setImage('test-2-620f78ccf17e7165843767.jpeg');
                     $manager->persist($image);
                 }
             }
@@ -129,7 +129,7 @@ class AppFixtures extends Fixture
                     ->setCategorie($categorie)
                     ->setRealisation($realisation)
 
-                    ->setImage($faker->imageUrl($width = 640, $height = 480));
+                    ->setImage('test-2-620f78ccf17e7165843767.jpeg');
                 $manager->persist($image);
             }
 
