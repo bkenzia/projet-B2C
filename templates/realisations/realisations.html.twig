@@ -52,33 +52,36 @@
 
 					<div class="row gx-0">
 						<a
-							class="col-4" data-bigpicture='{"imgSrc" : "{{realisation.getImages().toArray()[0].image}}"}'>
+							class="col-4" data-bigpicture='{"imgSrc" : "{{vich_uploader_asset(realisation.getImages().toArray()[0], "imageFile")|imagine_filter("full")}}"}'>
+
 
 							<!-- Image -->
 							<div class="w-150 mt-9 p-1 bg-white shadow-lg">
-								<img src="{{realisation.getImages().toArray()[0].image}}" class="img-fluid" alt="...">
+								<img src="{{vich_uploader_asset(realisation.getImages().toArray()[0], 'imageFile')|imagine_filter('blogpost')}}" class="img-fluid" alt="...">
 
 
 							</div>
 
 						</a>
 						<a
-							class="col-4" data-bigpicture='{"imgSrc" : "{{realisation.getImages().toArray()[1].image}}"}'>
+							class="col-4" data-bigpicture='{"imgSrc" : "{{vich_uploader_asset(realisation.getImages().toArray()[1], "imageFile")|imagine_filter("full")}}"}'>
+
 
 							<!-- Image -->
 							<div class="w-150 p-1 bg-white shadow-lg">
-								<img src="{{realisation.getImages().toArray()[1].image}}" class="img-fluid" alt="...">
+								<img src="{{vich_uploader_asset(realisation.getImages().toArray()[1], 'imageFile')|imagine_filter('blogpost')}}" class="img-fluid" alt="...">
 
 
 							</div>
 
 						</a>
 						<a
-							class="col-4 position-relative" data-bigpicture='{"imgSrc" : "{{realisation.getImages().toArray()[2].image}}"}'>
+							class="col-4 position-relative" data-bigpicture='{"imgSrc" : "{{vich_uploader_asset(realisation.getImages().toArray()[2], "imageFile")|imagine_filter("full")}}"}'>
+
 
 							<!-- Image -->
 							<div class="w-150 mt-11 float-end p-1 bg-white shadow-lg">
-								<img src="{{realisation.getImages().toArray()[2].image}}" class="img-fluid" alt="...">
+								<img src="{{vich_uploader_asset(realisation.getImages().toArray()[2], 'imageFile')|imagine_filter('blogpost')}}" class="img-fluid" alt="...">
 
 
 							</div>
