@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Symfony\Component\Routing\Annotation\Route;
 use App\Controller\Admin\RealisationCrudController;
+use App\Entity\Commentaire;
 use App\Entity\Images;
 use App\Entity\Realisation;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -57,5 +58,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Realisations', 'fas fa-list', Realisation::class);
         yield MenuItem::linkToCrud('Images', 'fas fa-list', Images::class);
+         yield MenuItem::linkToCrud('Commentaire', 'fas fa-comment', Commentaire::class);
     }
 }

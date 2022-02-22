@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Symfony\Component\DomCrawler\Field\TextareaFormField;
 
 class RealisationCrudController extends AbstractCrudController
 {
@@ -28,7 +29,8 @@ class RealisationCrudController extends AbstractCrudController
         return [
             // IdField::new('id'),
             TextField::new('Nom'),
-            TextEditorField::new('description'),
+            TextEditorField::new('description')->onlyOnIndex(),
+            TextareaField::new('description')->onlyOnForms(),
             SlugField::new('Slug')->setTargetFieldName('Nom')->hideOnForm(),
             
             DateField::new('CreatedAt')->hideOnForm(),
