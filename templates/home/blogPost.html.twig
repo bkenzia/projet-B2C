@@ -34,7 +34,7 @@
 
 								<!-- Heading -->
 								<h3>
-									{{image[2]}}
+									{# {{image[2]}} #}
 
 								</h3>
 								<div id="{{image[0][0]. nom}}" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -81,8 +81,11 @@
 
 
 								<!-- Author -->
-								<h6 class="text-uppercase text-muted me-2 mb-0">
-									{{ image[0][0].categorie().nom() }}
+								<h6
+									class="text-uppercase text-muted me-2 mb-0">
+									{# {{ image[0][0].categorie().nom() }} #}
+									{{image[2]}}
+
 
 								</h6>
 
