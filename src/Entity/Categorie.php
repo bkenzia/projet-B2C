@@ -35,12 +35,12 @@ class Categorie
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Realisation::class, mappedBy="categorie")
+     * @ORM\ManyToMany(targetEntity=Realisation::class, mappedBy="categorie", cascade={"persist","remove"})
      */
     private $realisations;
 
     /**
-     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="categorie")
+     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="categorie", cascade={"persist","remove"})
      */
     private $images;
 

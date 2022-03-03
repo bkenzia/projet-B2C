@@ -33,7 +33,8 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('<img src="/img/LOGO 1.png" class="w-75 p-3 " alt="...">');
+            ->setTitle(' Building Consortium Construction');
+            
     }
 
     public function configureMenuItems(): iterable

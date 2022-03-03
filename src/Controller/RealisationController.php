@@ -62,7 +62,7 @@ class RealisationController extends AbstractController
             return $this->redirectToRoute('realisations-details',['slug'=>$realisation->getSlug()]);
         }
        
-        return $this->render('realisations/details.html.twig', [
+        return $this->render('realisations/details2.html.twig', [
             'realisation'=>$realisation,
             'form'=>$form->createView(),
             'commentaires'=>$commentaires,
