@@ -14,7 +14,8 @@ class PortfolioController extends AbstractController
     #[Route('/portfolio', name: 'portfolio')]
     public function index(CategorieRepository $categorieRepository): Response
     {
-        // dd($categorieRepository->findAll()[0]->getRealisations()->toArray());
+        //   dd($categorieRepository->findAll()[0]->getImages()->toArray()[0]->getImage());
+
         return $this->render('portfolio/index.html.twig', [
             'categories' => $categorieRepository->findAll(),
         ]);
@@ -24,6 +25,7 @@ class PortfolioController extends AbstractController
     public function categorie(Categorie $categorie, RealisationRepository $realisationRepository): Response
     {
         $realisations=$realisationRepository->findAllPortfolio($categorie);
+        
     
         // recuperer les images de la meme categorie
         $images=array();

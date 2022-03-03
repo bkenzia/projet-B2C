@@ -32,7 +32,7 @@ class RealisationCrudController extends AbstractCrudController
             TextEditorField::new('description')->onlyOnIndex(),
             TextareaField::new('description')->onlyOnForms(),
             SlugField::new('Slug')->setTargetFieldName('Nom')->hideOnForm(),
-            
+            DateField::new('dateRealisation'),
             DateField::new('CreatedAt')->hideOnForm(),
             TextField::new('imageFile')->setFormType(VichImageType::class)->onlyWhenCreating(),
             ImageField::new('file')->setBasePath('/uploads/images/realisations')->onlyOnIndex(),

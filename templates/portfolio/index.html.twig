@@ -31,44 +31,54 @@
 	<section class="py-8 py-md-11 mt-n10 mt-md-n14">
 		<div class="container">
 			<div class="row" id="portfolio" data-isotope='{"layoutMode": "masonry"}' style="--bs-gutter-x: 2.4rem !important;">
+				{% set str = ""  %}
+
 				{% for categorie in categories %}
-					{% set realisation = categorie.realisations |last %}
-					<div
-						class="col-12 col-md-4 resources">
-
-						<!-- Card -->
-						<a
-							class="card shadow-light-lg mb-7" href="{{path('portfolio_categorie', {'slug':categorie.slug})}}">
-
-							<!-- Image -->
-							<div class="card-zoom">
-								<img class="card-img" src="{{vich_uploader_asset(realisation, 'imageFile')|imagine_filter('portfolio')}}" alt="...">
 
 
-							</div>
+					{% set realisation = categorie.realisations|last  %}
+					{% if realisation %}
+						{% if   realisation.nom != str %}
+							<div
+								class="col-12 col-md-4 resources">
 
-							<!-- Overlay -->
-							<div class="card-img-overlay card-img-overlay-hover">
-								<div
-									class="card-body bg-white">
+								<!-- Card -->
+								<a
+									class="card shadow-light-lg mb-7" href="{{path('portfolio_categorie', {'slug':categorie.slug})}}">
 
-									<!-- Shape -->
-									<div class="shape shape-bottom-100 shape-fluid-x text-white">
-										<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+									<!-- Image -->
+									<div class="card-zoom">
+										<img class="card-img" src="{{vich_uploader_asset(realisation, 'imageFile')|imagine_filter('portfolio')}}" alt="...">
+
+
 									</div>
 
-									<!-- Preheading -->
-									<h6 class="text-uppercase mb-1 text-muted">{{ categorie.nom}}</h6>
+									<!-- Overlay -->
+									<div class="card-img-overlay card-img-overlay-hover">
+										<div
+											class="card-body bg-white">
 
-									<!-- Heading -->
-									<h4 class="mb-0">{{ categorie.description|u.truncate(50,'...',false)}}</h4>
+											<!-- Shape -->
+											<div class="shape shape-bottom-100 shape-fluid-x text-white">
+												<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+											</div>
 
-								</div>
+											<!-- Preheading -->
+											<h6 class="text-uppercase mb-1 text-muted">{{ categorie.nom}}</h6>
+
+											<!-- Heading -->
+											<h4 class="mb-0">{{ categorie.description|u.truncate(50,'...',false)}}</h4>
+
+										</div>
+									</div>
+
+								</a>
+
 							</div>
 
-						</a>
-
-					</div>
+						{% endif %}
+						{% set str = realisation.nom  %}
+					{% endif %}
 				{% endfor %}
 
 
