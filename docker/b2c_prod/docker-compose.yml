@@ -1,0 +1,68 @@
+version: "3"
+services:
+    db_b2c_prod:
+        image: mysql:5
+        container_name: db_b2c_prod
+        restart: always
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_USER: "root"
+        networks:
+            - web
+
+    traefik:
+        restart: unless-stopped
+        container_name: traefik_docker_symfony
+        image: traefik:v2.0.2
+        ports:
+            - "80:80"
+            - "443:443"
+        labels:
+            - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+        volumes:
+            - ./traefik.yml:/etc/traefik/traefik.yml
+            - ./tls.yml:/etc/traefik/tls.yml
+            - /var/run/docker.sock:/var/run/docker.sock
+            - certs:/etc/ssl/traefik
+        networks:
+            - web
+
+    reverse-proxy-https-helper:
+        image: alpine
+        command: sh -c "cd /etc/ssl/traefik
+            && wget traefik.me/cert.pem -O cert.pem
+            && wget traefik.me/privkey.pem -O privkey.pem"
+        volumes:
+            - certs:/etc/ssl/traefik
+        networks:
+            - web
+
+    www_b2c_prod:
+        image: php:8.0
+        container_name: www_b2c_prod
+        volumes:
+            - ./vhosts:/etc/apache2/sites-enabled
+            - ../../:/var/www
+        environment:
+            DATABASE_URL: mysql://root:@db_b2c_prod:3306/db_prod?serverVersion=5.7"
+            COMPOSER_MEMOREY_LIMIT: 1
+        restart: always
+        labels:
+            - "traefik.http.routers.app1.rule=Host(`b2c-building.fr`)"
+            - "traefik.http.routers.app1-tls.tls.domains[0].main=app1.traefik.me"
+            - "traefik.http.routers.app1-tls.tls.domains[0].sans=app1-*.traefik.me"
+            - "traefik.http.routers.app1.tls=true"
+        networks:
+            - web
+
+networks:
+    web:
+    external:
+        name: web
+
+volumes:
+    ###> doctrine/doctrine-bundle ###
+    db-data:
+    certs:
+###< doctrine/doctrine-bundle ###
+
